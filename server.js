@@ -1,7 +1,8 @@
 'use strict';
 
 var express = require('express');
-var routes = require('./app/routes/index.js');
+var routes = require('./app/routes/router.js');
+var timestamp = require('./app/api/timestamp.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
@@ -26,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 routes(app, passport);
+timestamp(app); 
 
 var port = process.env.PORT || 8080;
 app.listen(port,  function (err) {
